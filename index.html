@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Calculator</title>
+    <title>Gradient Modern Calculator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -20,155 +20,110 @@
             min-height: 100vh;
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             padding: 20px;
-            transition: background 0.5s ease;
-        }
-
-        body.light-theme {
-            background: linear-gradient(135deg, #8EC5FC 0%, #E0C3FC 100%);
         }
 
         .calculator-container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        body.light-theme .calculator-container {
-            background: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .calculator {
-            width: 340px;
-            background-color: #1a1a1a;
+            width: 350px;
+            background: linear-gradient(to bottom right, #2c3e50, #1a1a2e);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        body.light-theme .calculator {
-            background-color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .calculator-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            background-color: #0d0d0d;
+            padding: 20px;
+            background: linear-gradient(to right, #0f2027, #203a43);
             color: white;
-            transition: all 0.3s ease;
-        }
-
-        body.light-theme .calculator-header {
-            background-color: #f0f0f0;
-            color: #333;
         }
 
         .calculator-title {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 500;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         .calculator-mode {
             font-size: 0.9rem;
-            opacity: 0.7;
+            opacity: 0.8;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
         }
 
         .display {
-            padding: 25px 20px;
-            background-color: #0d0d0d;
+            padding: 30px 25px;
+            background: linear-gradient(to right, #0f2027, #203a43);
             color: white;
             text-align: right;
-            min-height: 140px;
+            min-height: 160px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            transition: all 0.3s ease;
-        }
-
-        body.light-theme .display {
-            background-color: #f0f0f0;
-            color: #333;
         }
 
         .previous-operand {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            min-height: 24px;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            min-height: 27px;
             overflow: hidden;
             text-overflow: ellipsis;
-            transition: all 0.3s ease;
-        }
-
-        body.light-theme .previous-operand {
-            color: rgba(0, 0, 0, 0.7);
         }
 
         .current-operand {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 300;
             overflow: hidden;
             text-overflow: ellipsis;
-            transition: all 0.3s ease;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-gap: 1px;
-            background-color: #333;
-            transition: all 0.3s ease;
-        }
-
-        body.light-theme .buttons {
-            background-color: #ddd;
+            grid-gap: 2px;
+            background: linear-gradient(to bottom right, #3a3a3a, #2a2a2a);
+            padding: 2px;
         }
 
         button {
             border: none;
             outline: none;
-            background-color: #2d2d2d;
+            background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
             color: white;
-            font-size: 1.5rem;
-            padding: 20px;
+            font-size: 1.6rem;
+            padding: 22px;
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
         }
 
-        body.light-theme button {
-            background-color: #f8f8f8;
-            color: #333;
-        }
-
         /* Enhanced Hover Effects */
         button:hover {
-            background-color: #3d3d3d;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        body.light-theme button:hover {
-            background-color: #e8e8e8;
+            background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         button:active {
             transform: scale(0.95);
-            background-color: #4d4d4d;
-        }
-
-        body.light-theme button:active {
-            background-color: #d8d8d8;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         button::after {
@@ -185,131 +140,86 @@
             transition: transform 0.5s, opacity 0.3s;
         }
 
-        body.light-theme button::after {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
         button:active::after {
-            transform: translate(-50%, -50%) scale(20);
-            opacity: 1;
+            transform: translate(-50%, -50%) scale(25);
+            opacity: 0;
             transition: 0s;
         }
 
         .operator {
-            background-color: #ff9500;
-            font-size: 1.7rem;
+            background: linear-gradient(to bottom, #ff9500, #ff7e00);
+            font-size: 1.8rem;
         }
 
         .operator:hover {
-            background-color: #ffaa33;
-        }
-
-        .operator:active {
-            background-color: #ffbd66;
+            background: linear-gradient(to bottom, #ffaa33, #ff9433);
         }
 
         .equals {
-            background-color: #ff9500;
+            background: linear-gradient(to bottom, #ff9500, #ff7e00);
         }
 
         .equals:hover {
-            background-color: #ffaa33;
-        }
-
-        .equals:active {
-            background-color: #ffbd66;
+            background: linear-gradient(to bottom, #ffaa33, #ff9433);
         }
 
         .double {
             grid-column: span 2;
+            border-radius: 0 0 0 10px;
         }
 
         .function {
-            background-color: #4d4d4d;
-        }
-
-        body.light-theme .function {
-            background-color: #e8e8e8;
+            background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
         }
 
         .function:hover {
-            background-color: #5d5d5d;
-        }
-
-        body.light-theme .function:hover {
-            background-color: #d8d8d8;
-        }
-
-        .function:active {
-            background-color: #6d6d6d;
-        }
-
-        body.light-theme .function:active {
-            background-color: #c8c8c8;
+            background: linear-gradient(to bottom, #5a5a5a, #4a4a4a);
         }
 
         .memory-btn {
-            background-color: #3a3a3a;
-            font-size: 1.2rem;
-        }
-
-        body.light-theme .memory-btn {
-            background-color: #e0e0e0;
+            background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
+            font-size: 1.3rem;
         }
 
         .memory-btn:hover {
-            background-color: #4a4a4a;
-        }
-
-        body.light-theme .memory-btn:hover {
-            background-color: #d0d0d0;
+            background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
         }
 
         .calculator-footer {
             text-align: center;
             color: white;
-            padding: 10px;
+            padding: 15px;
             font-size: 0.9rem;
-            opacity: 0.7;
-            background-color: #0d0d0d;
-            transition: all 0.3s ease;
-        }
-
-        body.light-theme .calculator-footer {
-            background-color: #f0f0f0;
-            color: #333;
+            opacity: 0.8;
+            background: linear-gradient(to right, #0f2027, #203a43);
         }
 
         /* Theme toggle */
         .theme-toggle {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .theme-btn {
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        body.light-theme .theme-btn {
-            background: rgba(0, 0, 0, 0.1);
-            color: #333;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .theme-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        body.light-theme .theme-btn:hover {
-            background: rgba(0, 0, 0, 0.2);
+        .theme-btn:active {
+            transform: scale(0.95);
         }
 
         /* Responsive design */
@@ -320,7 +230,11 @@
             }
             
             button {
-                padding: 16px;
+                padding: 18px;
+            }
+            
+            .current-operand {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -329,7 +243,7 @@
     <div class="calculator-container">
         <div class="calculator">
             <div class="calculator-header">
-                <div class="calculator-title">MADYFICATION</div>
+                <div class="calculator-title">GRADIENT CALCULATOR</div>
                 <div class="calculator-mode">DEG</div>
             </div>
             <div class="display">
@@ -367,12 +281,12 @@
                 <button class="function" data-action="toggle-sign">±</button>
             </div>
             <div class="calculator-footer">
-                <i class="fas fa-calculator"></i> Moomin's calculator v1.4
+                <i class="fas fa-calculator"></i> Gradient Calculator v2.0
             </div>
         </div>
         
         <div class="theme-toggle">
-            <button class="theme-btn" id="theme-toggle">Toggle Light Mode</button>
+            <button class="theme-btn" id="theme-toggle">Toggle Theme</button>
         </div>
     </div>
 
@@ -628,15 +542,21 @@
             }
         });
 
-        // Theme toggle - Fixed implementation
+        // Theme toggle
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            if (document.body.classList.contains('light-theme')) {
-                themeToggle.textContent = 'Toggle Dark Mode';
-            } else {
-                themeToggle.textContent = 'Toggle Light Mode';
-            }
+            // Create a new gradient theme
+            document.body.style.background = 'linear-gradient(135deg, #' + 
+                Math.floor(Math.random()*16777215).toString(16) + ' 0%, #' + 
+                Math.floor(Math.random()*16777215).toString(16) + ' 100%)';
+            
+            // Change button text temporarily
+            const originalText = themeToggle.textContent;
+            themeToggle.textContent = 'Theme Changed!';
+            
+            setTimeout(() => {
+                themeToggle.textContent = originalText;
+            }, 1000);
         });
     </script>
 </body>
